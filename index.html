@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Math Ninja Game</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #game {
+      width: 90vw;
+      height: 70vh;
+      border: 3px solid #fff;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+      background: #222;
+    }
+    .answer {
+      position: absolute;
+      background: #28a745;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .answer:hover {
+      transform: scale(1.1);
+    }
+    #question, #level, #score, #lives {
+      margin: 10px;
+    }
+    #status-bar {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    #game-over {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+    #game-over h2 {
+      color: #f33;
+    }
+    @media (max-width: 600px) {
+      .answer {
+        padding: 6px 12px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Math Ninja: Brain Battle</h1>
+  <div id="status-bar">
+    <div id="question">Question: </div>
+    <div id="level">Level: 1</div>
+    <div id="score">Score: 0</div>
+    <div id="lives">Lives: 3</div>
+  </div>
+  <div id="game"></div>
+  <div id="game-over">
+    <h2>Game Over!</h2>
+    <p>Your Score: <span id="final-score"></span></p>
+    <button onclick="startGame()">Play Again</button>
+  </div>
+
+  <script>
+    const gameArea = document.getElementById('game');
+    const questionText = document.getElementById('question');
+    const levelText = document.getElementById('level');
+    const scoreText = document.getElementById('score');
+    const livesText = document.getElementById('lives');
+    const gameOver = document.getElementById('game-over');
+    const finalScore = document.getElementById('final-score');
+
+    let level = 1;
+    let score = 0;
+    let lives = 3;
+    let question = {};
+    let interval;
+
+    const operations = ['+', '-', '*'];
+
+    function random(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function generateQuestion() {
+      let op = operations[Math.min(level - 1, operations.length - 1)];
+      let num1 = random(1, level * 10);
+      let num2 = random(1, level * 10);
+      let answer;
+      switch (op) {
+        case '+': answer = num1 + num2; break;
+        case '-': answer = num1 - num2; break;
+        case '*': answer = num1 * num2; break;
+      }
+      question = { text: `${num1} ${op} ${num2}`, answer };
+      questionText.innerText = `Question: ${question.text}`;
+    }
+
+    function createAnswers() {
+      gameArea.innerHTML = '';
+      let correct = question.answer;
+      let answers = [correct];
+      while (answers.length < 4) {
+        let wrong = correct + random(-10, 10);
+        if (!answers.includes(wrong)) answers.push(wrong);
+      }
+      answers = answers.sort(() => Math.random() - 0.5);
+      answers.forEach(ans => {
+        let btn = document.createElement('div');
+        btn.classList.add('answer');
+        btn.innerText = ans;
+        btn.style.top = `${random(0, 60)}vh`;
+        btn.style.left = `${random(0, 80)}vw`;
+        btn.onclick = () => checkAnswer(ans);
+        gameArea.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(ans) {
+      if (ans === question.answer) {
+        score += 10;
+        if (score % 50 === 0) level++;
+      } else {
+        lives--;
+        if (lives === 0) return endGame();
+      }
+      updateStatus();
+      nextRound();
+    }
+
+    function updateStatus() {
+      scoreText.innerText = `Score: ${score}`;
+      levelText.innerText = `Level: ${level}`;
+      livesText.innerText = `Lives: ${lives}`;
+    }
+
+    function nextRound() {
+      generateQuestion();
+      createAnswers();
+    }
+
+    function endGame() {
+      clearInterval(interval);
+      gameArea.innerHTML = '';
+      gameOver.style.display = 'block';
+      finalScore.innerText = score;
+    }
+
+    function startGame() {
+      level = 1;
+      score = 0;
+      lives = 3;
+      gameOver.style.display = 'none';
+      updateStatus();
+      nextRound();
+    }
+
+    startGame();
+  </script>
+</body>
+</html>
