@@ -1,174 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Prabas Talluri — Frontend Developer</title>
+<meta charset="UTF-8">
+<title>Prabas Talluri — Frontend Developer</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      font-family:'Montserrat',sans-serif;
-      background:#f4f5fb;
-      color:#222;
-      line-height:1.6;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:linear-gradient(120deg,#e9f7ef,#ede7f6);
+  color:#30335a;
+}
 
-    /* ---------- HEADER ---------- */
-    header{
-      height:100vh;
-      background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-      url('https://images.unsplash.com/photo-1508780709619-79562169bc64') center/cover;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
-    }
-    header h1{font-size:3rem;font-weight:700}
-    header p{margin-top:.5rem;font-size:1.2rem}
+/* ---------- HEADER ---------- */
+header{
+  height:100vh;
+  background:linear-gradient(rgba(0,0,50,.5),rgba(0,0,50,.5)),
+  url('https://images.unsplash.com/photo-1508780709619-79562169bc64') center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+}
+header h1{font-size:3rem}
+header p{font-size:1.2rem}
 
-    /* ---------- NAV ---------- */
-    nav{
-      position:sticky;
-      top:0;
-      background:#1e2a78;
-      padding:1rem;
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      z-index:1000;
-    }
-    nav a{
-      color:#fff;
-      text-decoration:none;
-      padding:.4rem .9rem;
-      border-radius:20px;
-      transition:.3s;
-    }
-    nav a:hover{background:#fff;color:#1e2a78}
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;
+  top:0;
+  background:#1e2a78;
+  padding:1rem;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  z-index:1000;
+}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:.4rem .9rem;
+  border-radius:20px;
+}
+nav a:hover{background:#fff;color:#1e2a78}
 
-    /* ---------- LAYOUT ---------- */
-    main{
-      max-width:1100px;
-      margin:auto;
-      padding:3rem 1rem;
-    }
-    section{
-      margin-bottom:4rem;
-    }
-    section h2{
-      text-align:center;
-      font-size:1.9rem;
-      margin-bottom:2rem;
-      color:#6d55e4;
-    }
+/* ---------- COMMON ---------- */
+main{max-width:1100px;margin:auto;padding:3rem 1rem}
+section{
+  margin-bottom:3rem;
+  background:#fff;
+  padding:2rem;
+  border-radius:24px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+section h2{
+  text-align:center;
+  color:#6d55e4;
+  margin-bottom:2rem;
+}
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1.5rem;
+}
+.card{
+  background:#fff;
+  padding:1.5rem;
+  border-radius:18px;
+  text-align:center;
+  transition:.3s;
+}
+.card:hover{transform:translateY(-8px)}
+.card-icon{font-size:2rem;color:#6d55e4;margin-bottom:.5rem}
 
-    /* ---------- PROJECTS (RIGHT CARD STYLE) ---------- */
-    .project-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:2rem;
-    }
+/* ---------- PROJECTS (RIGHT TEMPLATE STYLE) ---------- */
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
+}
+.project-card{
+  height:460px;
+  border-radius:28px;
+  position:relative;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  text-decoration:none;
+  transition:.35s;
+}
+.project-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+}
+.badge{
+  position:absolute;
+  top:16px;
+  right:16px;
+  background:rgba(255,255,255,.9);
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+}
+.overlay{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:22px;
+  color:#fff;
+  background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.4),transparent);
+}
+.overlay h3{font-size:22px;margin-bottom:6px}
+.overlay p{font-size:14px;margin-bottom:14px}
+.tags{display:flex;gap:10px;margin-bottom:14px}
+.tags span{
+  background:rgba(255,255,255,.25);
+  padding:4px 12px;
+  border-radius:14px;
+  font-size:12px;
+}
+.overlay button{
+  width:100%;
+  padding:14px;
+  border-radius:24px;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+}
 
-    .project-card{
-      height:430px;
-      border-radius:28px;
-      position:relative;
-      overflow:hidden;
-      background-size:cover;
-      background-position:center;
-      box-shadow:0 20px 40px rgba(0,0,0,.25);
-      transition:.35s;
-      text-decoration:none;
-    }
-
-    .project-card:hover{
-      transform:translateY(-12px);
-      box-shadow:0 30px 60px rgba(0,0,0,.35);
-    }
-
-    .project-badge{
-      position:absolute;
-      top:16px;
-      right:16px;
-      background:rgba(255,255,255,.95);
-      padding:6px 14px;
-      border-radius:20px;
-      font-size:12px;
-      font-weight:600;
-      color:#222;
-    }
-
-    .project-content{
-      position:absolute;
-      bottom:0;
-      width:100%;
-      padding:22px;
-      color:#fff;
-      background:linear-gradient(
-        to top,
-        rgba(0,0,0,.8),
-        rgba(0,0,0,.35),
-        transparent
-      );
-    }
-
-    .project-content h3{
-      font-size:22px;
-      margin-bottom:6px;
-      font-weight:700;
-    }
-
-    .project-content p{
-      font-size:14px;
-      opacity:.9;
-      margin-bottom:14px;
-    }
-
-    .project-meta{
-      display:flex;
-      gap:10px;
-      margin-bottom:14px;
-    }
-
-    .project-meta span{
-      font-size:12px;
-      padding:4px 12px;
-      border-radius:14px;
-      background:rgba(255,255,255,.25);
-    }
-
-    .project-meta .price{
-      margin-left:auto;
-      font-weight:700;
-    }
-
-    .project-content button{
-      width:100%;
-      padding:14px;
-      border-radius:24px;
-      border:none;
-      background:#fff;
-      color:#111;
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer{
-      background:#1e2a78;
-      color:#fff;
-      text-align:center;
-      padding:1.5rem;
-      margin-top:3rem;
-    }
-
-    @media(max-width:768px){
-      header h1{font-size:2.2rem}
-    }
-  </style>
+/* ---------- FOOTER ---------- */
+footer{
+  text-align:center;
+  padding:1.5rem;
+  background:#1e2a78;
+  color:#fff;
+  margin-top:3rem;
+}
+</style>
 </head>
 
 <body>
@@ -181,63 +157,118 @@
 </header>
 
 <nav>
+  <a href="#about">About</a>
+  <a href="#education">Education</a>
+  <a href="#experience">Experience</a>
   <a href="#projects">Projects</a>
+  <a href="#skills">Skills</a>
+  <a href="#internships">Internships</a>
+  <a href="#certifications">Certifications</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <main>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h2>Projects</h2>
+<section id="about">
+<h2>About Me</h2>
+<div class="card-grid">
+<div class="card">
+<i class="fas fa-user card-icon"></i>
+<p>Eager frontend developer focused on building clean, modern UI.</p>
+</div>
+</div>
+</section>
 
-    <div class="project-grid">
+<section id="education">
+<h2>Education</h2>
+<div class="card-grid">
+<div class="card">B.Tech ECE — 71.8%</div>
+<div class="card">Intermediate MPC — 9.36 CGPA</div>
+<div class="card">SSC — 9.0 CGPA</div>
+</div>
+</section>
 
-      <a href="https://prabas2588.github.io/Protoflio/" target="_blank"
-         class="project-card"
-         style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');">
+<section id="experience">
+<h2>Work Experience</h2>
+<div class="card-grid">
+<div class="card">
+Frontend Developer — Ascus Tech<br>
+Nov 2024 – Present
+</div>
+</div>
+</section>
 
-        <span class="project-badge">Featured</span>
+<!-- ✅ PROJECTS (RIGHT SIDE STYLE) -->
+<section id="projects">
+<h2>Projects</h2>
 
-        <div class="project-content">
-          <h3>Portfolio Website</h3>
-          <p>Modern responsive portfolio using HTML, CSS & JavaScript.</p>
+<div class="project-grid">
 
-          <div class="project-meta">
-            <span>Frontend</span>
-            <span class="price">Live</span>
-          </div>
+<a class="project-card" href="https://prabas2588.github.io/Protoflio/" target="_blank"
+style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f')">
+<span class="badge">Featured</span>
+<div class="overlay">
+<h3>Portfolio Website</h3>
+<p>Modern responsive personal portfolio.</p>
+<div class="tags"><span>HTML</span><span>CSS</span></div>
+<button>View Project</button>
+</div>
+</a>
 
-          <button>View Project</button>
-        </div>
-      </a>
+<a class="project-card" href="https://prabas2588.github.io/aptitude/" target="_blank"
+style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475')">
+<span class="badge">Live</span>
+<div class="overlay">
+<h3>Aptitude Test App</h3>
+<p>Timer-based test platform.</p>
+<div class="tags"><span>JS</span><span>UI</span></div>
+<button>View Project</button>
+</div>
+</a>
 
-      <a href="https://prabas2588.github.io/aptitude/" target="_blank"
-         class="project-card"
-         style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475');">
+</div>
+</section>
 
-        <span class="project-badge">Live</span>
+<section id="skills">
+<h2>Skills</h2>
+<div class="card-grid">
+<div class="card">HTML</div>
+<div class="card">CSS</div>
+<div class="card">JavaScript</div>
+<div class="card">React</div>
+<div class="card">WordPress</div>
+</div>
+</section>
 
-        <div class="project-content">
-          <h3>Aptitude Test App</h3>
-          <p>Timer-based aptitude test with responsive UI.</p>
+<section id="internships">
+<h2>Internships</h2>
+<div class="card-grid">
+<div class="card">VLSI — SkillDzire</div>
+<div class="card">Future Skills Expert</div>
+<div class="card">Web Development Intern</div>
+</div>
+</section>
 
-          <div class="project-meta">
-            <span>JavaScript</span>
-            <span class="price">Demo</span>
-          </div>
+<section id="certifications">
+<h2>Certifications</h2>
+<div class="card-grid">
+<div class="card">Python for Everybody</div>
+<div class="card">Python for Data Science</div>
+</div>
+</section>
 
-          <button>View Project</button>
-        </div>
-      </a>
-
-    </div>
-  </section>
+<section id="contact">
+<h2>Contact</h2>
+<div class="card-grid">
+<div class="card">📧 prabhastalluri2.0@gmail.com</div>
+<div class="card">📍 Hyderabad</div>
+<div class="card">🌐 github.com/prabas2588</div>
+</div>
+</section>
 
 </main>
 
-<footer>
-  © 2025 Prabas Talluri
-</footer>
+<footer>© 2025 Prabas Talluri</footer>
 
 </body>
 </html>
