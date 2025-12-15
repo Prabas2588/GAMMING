@@ -2,127 +2,242 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FLAMES Calculator</title>
+  <title>Prabas Talluri — Frontend Developer</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#f4f5fb;
+      color:#222;
+      line-height:1.6;
     }
-    .container {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      text-align: center;
-      width: 90%;
-      max-width: 400px;
+
+    /* ---------- HEADER ---------- */
+    header{
+      height:100vh;
+      background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+      url('https://images.unsplash.com/photo-1508780709619-79562169bc64') center/cover;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
     }
-    h1 {
-      color: #ff4f81;
-      font-size: 2em;
-      margin-bottom: 10px;
+    header h1{font-size:3rem;font-weight:700}
+    header p{margin-top:.5rem;font-size:1.2rem}
+
+    /* ---------- NAV ---------- */
+    nav{
+      position:sticky;
+      top:0;
+      background:#1e2a78;
+      padding:1rem;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      z-index:1000;
     }
-    input {
-      width: 80%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 10px;
-      font-size: 1em;
-      outline: none;
-      background-color: #f9f9f9;
+    nav a{
+      color:#fff;
+      text-decoration:none;
+      padding:.4rem .9rem;
+      border-radius:20px;
+      transition:.3s;
     }
-    button {
-      background-color: #ff4f81;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1em;
-      margin-top: 10px;
-      transition: all 0.3s;
+    nav a:hover{background:#fff;color:#1e2a78}
+
+    /* ---------- LAYOUT ---------- */
+    main{
+      max-width:1100px;
+      margin:auto;
+      padding:3rem 1rem;
     }
-    button:hover {
-      background-color: #ff2a6a;
-      transform: scale(1.05);
+    section{
+      margin-bottom:4rem;
     }
-    .result {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #333;
-      font-weight: bold;
+    section h2{
+      text-align:center;
+      font-size:1.9rem;
+      margin-bottom:2rem;
+      color:#6d55e4;
     }
-    footer {
-      font-size: 0.8em;
-      color: #666;
-      margin-top: 15px;
+
+    /* ---------- PROJECTS (RIGHT CARD STYLE) ---------- */
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:2rem;
+    }
+
+    .project-card{
+      height:430px;
+      border-radius:28px;
+      position:relative;
+      overflow:hidden;
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 20px 40px rgba(0,0,0,.25);
+      transition:.35s;
+      text-decoration:none;
+    }
+
+    .project-card:hover{
+      transform:translateY(-12px);
+      box-shadow:0 30px 60px rgba(0,0,0,.35);
+    }
+
+    .project-badge{
+      position:absolute;
+      top:16px;
+      right:16px;
+      background:rgba(255,255,255,.95);
+      padding:6px 14px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:600;
+      color:#222;
+    }
+
+    .project-content{
+      position:absolute;
+      bottom:0;
+      width:100%;
+      padding:22px;
+      color:#fff;
+      background:linear-gradient(
+        to top,
+        rgba(0,0,0,.8),
+        rgba(0,0,0,.35),
+        transparent
+      );
+    }
+
+    .project-content h3{
+      font-size:22px;
+      margin-bottom:6px;
+      font-weight:700;
+    }
+
+    .project-content p{
+      font-size:14px;
+      opacity:.9;
+      margin-bottom:14px;
+    }
+
+    .project-meta{
+      display:flex;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .project-meta span{
+      font-size:12px;
+      padding:4px 12px;
+      border-radius:14px;
+      background:rgba(255,255,255,.25);
+    }
+
+    .project-meta .price{
+      margin-left:auto;
+      font-weight:700;
+    }
+
+    .project-content button{
+      width:100%;
+      padding:14px;
+      border-radius:24px;
+      border:none;
+      background:#fff;
+      color:#111;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer{
+      background:#1e2a78;
+      color:#fff;
+      text-align:center;
+      padding:1.5rem;
+      margin-top:3rem;
+    }
+
+    @media(max-width:768px){
+      header h1{font-size:2.2rem}
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>🔥 FLAMES 🔥</h1>
-    <input type="text" id="name1" placeholder="Your Name">
-    <input type="text" id="name2" placeholder="Crush's Name">
-    <br>
-    <button onclick="calculateFLAMES()">Check Compatibility</button>
-    <div class="result" id="result">Result will appear here 💕</div>
-    <footer>Just for fun — don’t take it too seriously 😄</footer>
+
+<header>
+  <div>
+    <h1>Prabas Talluri</h1>
+    <p>Frontend Developer</p>
   </div>
+</header>
 
-  <script>
-    function calculateFLAMES() {
-      let name1 = document.getElementById('name1').value.toLowerCase().replace(/\s+/g, '');
-      let name2 = document.getElementById('name2').value.toLowerCase().replace(/\s+/g, '');
+<nav>
+  <a href="#projects">Projects</a>
+</nav>
 
-      if (!name1 || !name2) {
-        document.getElementById('result').innerText = 'Please enter both names!';
-        return;
-      }
+<main>
 
-      let arr1 = name1.split('');
-      let arr2 = name2.split('');
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
 
-      for (let i = 0; i < arr1.length; i++) {
-        let index = arr2.indexOf(arr1[i]);
-        if (index !== -1) {
-          arr1.splice(i, 1);
-          arr2.splice(index, 1);
-          i--;
-        }
-      }
+    <div class="project-grid">
 
-      let count = arr1.length + arr2.length;
-      let flames = ['F', 'L', 'A', 'M', 'E', 'S'];
-      let meanings = {
-        'F': '💛 Friendship',
-        'L': '❤️ Love',
-        'A': '💗 Affection',
-        'M': '💍 Marriage',
-        'E': '💢 Enemy',
-        'S': '👫 Siblings'
-      };
+      <a href="https://prabas2588.github.io/Protoflio/" target="_blank"
+         class="project-card"
+         style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');">
 
-      let index = 0;
-      while (flames.length > 1) {
-        index = (count % flames.length) - 1;
-        if (index >= 0) {
-          flames.splice(index, 1);
-        } else {
-          flames.pop();
-        }
-      }
+        <span class="project-badge">Featured</span>
 
-      let result = meanings[flames[0]];
-      document.getElementById('result').innerText = `${name1} & ${name2} = ${result}`;
-    }
-  </script>
+        <div class="project-content">
+          <h3>Portfolio Website</h3>
+          <p>Modern responsive portfolio using HTML, CSS & JavaScript.</p>
+
+          <div class="project-meta">
+            <span>Frontend</span>
+            <span class="price">Live</span>
+          </div>
+
+          <button>View Project</button>
+        </div>
+      </a>
+
+      <a href="https://prabas2588.github.io/aptitude/" target="_blank"
+         class="project-card"
+         style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475');">
+
+        <span class="project-badge">Live</span>
+
+        <div class="project-content">
+          <h3>Aptitude Test App</h3>
+          <p>Timer-based aptitude test with responsive UI.</p>
+
+          <div class="project-meta">
+            <span>JavaScript</span>
+            <span class="price">Demo</span>
+          </div>
+
+          <button>View Project</button>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2025 Prabas Talluri
+</footer>
+
 </body>
 </html>
